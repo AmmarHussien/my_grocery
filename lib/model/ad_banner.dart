@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:hive/hive.dart';
+part 'ad_banner.g.dart';
 
 List<AdBanner> adBannerListFromJson(String value) => List<AdBanner>.from(
       json.decode(value)['data'].map(
@@ -6,8 +8,11 @@ List<AdBanner> adBannerListFromJson(String value) => List<AdBanner>.from(
           ),
     );
 
+@HiveType(typeId: 1)
 class AdBanner {
+  @HiveField(0)
   final int id;
+  @HiveField(1)
   final String image;
 
   AdBanner({
