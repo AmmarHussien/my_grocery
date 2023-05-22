@@ -20,14 +20,15 @@ class ProductAdapter extends TypeAdapter<Product> {
       id: fields[0] as int,
       name: fields[1] as String,
       image: (fields[3] as List).cast<String>(),
-      description: fields[2] as String,
+      description: fields[2] as String, tags: [],
+      //tags: (fields[4] as List).cast<Tag>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, Product obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class ProductAdapter extends TypeAdapter<Product> {
       ..writeByte(2)
       ..write(obj.description)
       ..writeByte(3)
-      ..write(obj.image);
+      ..write(obj.image)
+      ..writeByte(4)
+      ..write(obj.tags);
   }
 
   @override

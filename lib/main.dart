@@ -17,6 +17,7 @@ void main() async {
   Hive.registerAdapter(AdBannerAdapter());
   Hive.registerAdapter(CategoryAdapter());
   Hive.registerAdapter(ProductAdapter());
+ 
   runApp(const MyApp());
 }
 

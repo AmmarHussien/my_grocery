@@ -31,6 +31,7 @@ class AppTheme {
   );
 
   static Brightness get currentSystemBrightness =>
+      // ignore: deprecated_member_use
       SchedulerBinding.instance.window.platformBrightness;
 
   static setStatusBarAndNavigationBarColor(ThemeMode themeMode) {
