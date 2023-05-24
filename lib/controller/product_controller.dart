@@ -4,7 +4,7 @@ import 'package:my_grocery/service/remote%20service/remote_product.dart';
 
 class ProductController extends GetxController {
   static ProductController instance = Get.find();
-  RxList<Product> productList = List<Product>.empty(growable: true).obs;
+  static RxList<Product> productList = List<Product>.empty(growable: true).obs;
   RxBool isProductLoading = false.obs;
 
   @override
@@ -22,7 +22,7 @@ class ProductController extends GetxController {
       }
     } finally {
       isProductLoading(false);
-      //print(productList.length);
+      print(productList.length);
     }
   }
 }

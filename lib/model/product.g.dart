@@ -19,9 +19,10 @@ class ProductAdapter extends TypeAdapter<Product> {
     return Product(
       id: fields[0] as int,
       name: fields[1] as String,
-      image: (fields[3] as List).cast<String>(),
-      description: fields[2] as String, tags: [],
-      //tags: (fields[4] as List).cast<Tag>(),
+      
+      description: fields[2] as String, 
+
+      tags: (fields[4] as List).cast<Tag>(), images: (fields[3] as List).cast<String>(),
     );
   }
 
@@ -36,7 +37,7 @@ class ProductAdapter extends TypeAdapter<Product> {
       ..writeByte(2)
       ..write(obj.description)
       ..writeByte(3)
-      ..write(obj.image)
+      ..write(obj.images)
       ..writeByte(4)
       ..write(obj.tags);
   }
