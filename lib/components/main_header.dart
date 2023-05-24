@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:my_grocery/controller/controllers.dart';
 
 class MainHeader extends StatelessWidget {
-  const MainHeader({super.key});
+  const MainHeader({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,23 +37,43 @@ class MainHeader extends StatelessWidget {
                   ),
                 ],
               ),
-              child: TextField(
-                autofocus: false,
-                onSubmitted: (value) {},
-                onChanged: (value) {},
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 16,
+              child: Obx(
+                () => TextField(
+                  autofocus: false,
+                  controller: productController.searchTextEditController,
+                  onSubmitted: (value) {
+                    productController.getProductByName(keyword: value);
+                    dashboardController.updateIndex(1);
+                  },
+                  onChanged: (value) {
+                    productController.searchVal.value = value;
+                  },
+                  decoration: InputDecoration(
+                    suffixIcon: productController.searchVal.value.isNotEmpty
+                        ? IconButton(
+                            onPressed: () {
+                              FocusScope.of(context).requestFocus(FocusNode());
+                              productController.searchTextEditController
+                                  .clear();
+                              productController.searchVal.value = '';
+                              productController.getProducts();
+                            },
+                            icon: const Icon(Icons.clear),
+                          )
+                        : null,
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 14,
+                      vertical: 16,
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(24),
+                      borderSide: BorderSide.none,
+                    ),
+                    hintText: 'Search...',
+                    prefixIcon: const Icon(Icons.search),
                   ),
-                  fillColor: Colors.white,
-                  filled: true,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(24),
-                    borderSide: BorderSide.none,
-                  ),
-                  hintText: 'Search...',
-                  prefixIcon: const Icon(Icons.search),
                 ),
               ),
             ),
