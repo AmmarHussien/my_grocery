@@ -2,8 +2,8 @@ import 'package:get/get.dart';
 import 'package:my_grocery/model/ad_banner.dart';
 import 'package:my_grocery/model/category.dart';
 import 'package:my_grocery/service/local%20service/local_banner_service.dart';
-import 'package:my_grocery/service/local%20service/local_pupular_category_service.dart';
-import 'package:my_grocery/service/local%20service/local_pupular_product_service.dart';
+import 'package:my_grocery/service/local%20service/local_category_service.dart';
+import 'package:my_grocery/service/local%20service/local_product_service.dart';
 import 'package:my_grocery/service/remote%20service/remote_banner_service.dart';
 import 'package:my_grocery/service/remote%20service/remote_popular_category_service.dart';
 import 'package:my_grocery/service/remote%20service/remote_popular_product_service.dart';
@@ -20,8 +20,8 @@ class HomeController extends GetxController {
   RxBool isPopularCategoryLoading = false.obs;
   RxBool isPopularProductLoading = false.obs;
   final LocalAdBannerService _localAdBannerService = LocalAdBannerService();
-  final LocalPopularCategoryService _localPopularCategoryService =
-      LocalPopularCategoryService();
+  final LocalCategoryService _localPopularCategoryService =
+      LocalCategoryService();
   final LocalPopularProductService _localProductService =
       LocalPopularProductService();
 
@@ -61,9 +61,9 @@ class HomeController extends GetxController {
   void getPopularCategories() async {
     try {
       isPopularCategoryLoading(true);
-      if (_localPopularCategoryService.getAllPopularCategory().isNotEmpty) {
+      if (_localPopularCategoryService.getPopularCategories().isNotEmpty) {
         popularCategoryList
-            .assignAll(_localPopularCategoryService.getAllPopularCategory());
+            .assignAll(_localPopularCategoryService.getPopularCategories());
       }
       var result = await RemotePopularCategoryService().get();
       if (result != null) {
