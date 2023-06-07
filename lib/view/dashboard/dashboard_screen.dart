@@ -5,6 +5,7 @@ import 'package:my_grocery/controller/dashboard_controller.dart';
 import 'package:my_grocery/view/category/category_screen.dart';
 import 'package:my_grocery/view/product/product_screen.dart';
 
+import '../account/account_screen.dart';
 import '../home/home_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -18,13 +19,11 @@ class DashboardScreen extends StatelessWidget {
         body: SafeArea(
           child: IndexedStack(
             index: controller.tabIndex,
-            children: [
-              const HomeScreen(),
-              const ProductScreen(),
-              const CategoryScreen(),
-              Container(
-                color: Colors.amber,
-              ),
+            children: const [
+              HomeScreen(),
+              ProductScreen(),
+              CategoryScreen(),
+              AccountScreen()
             ],
           ),
         ),

@@ -1,44 +1,44 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'product.dart';
+part of 'user.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class ProductAdapter extends TypeAdapter<Product> {
+class UserAdapter extends TypeAdapter<User> {
   @override
-  final int typeId = 3;
+  final int typeId = 4;
 
   @override
-  Product read(BinaryReader reader) {
+  User read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Product(
-      id: fields[0] as int,
-      name: fields[1] as String,
-      description: fields[2] as String,
-      images: (fields[3] as List).cast<String>(),
-      tags: (fields[4] as List).cast<Tag>(),
+    return User(
+      id: fields[0] as String,
+      fullName: fields[1] as String,
+      email: fields[2] as String,
+      image: fields[3] as String?,
+      birthDay: fields[4] as DateTime?,
     );
   }
 
   @override
-  void write(BinaryWriter writer, Product obj) {
+  void write(BinaryWriter writer, User obj) {
     writer
       ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.name)
+      ..write(obj.fullName)
       ..writeByte(2)
-      ..write(obj.description)
+      ..write(obj.email)
       ..writeByte(3)
-      ..write(obj.images)
+      ..write(obj.image)
       ..writeByte(4)
-      ..write(obj.tags);
+      ..write(obj.birthDay);
   }
 
   @override
@@ -47,7 +47,7 @@ class ProductAdapter extends TypeAdapter<Product> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ProductAdapter &&
+      other is UserAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
